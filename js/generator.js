@@ -1,33 +1,35 @@
+const CHECKED_CHECKBOX = "[check][/check]";
+const UNCHECKED_CHECKBOX = "[uncheck][/uncheck]";
+
 function initializeInputs() {
-  let body = document.body; 
+  let body = document.body;
   if (!body) return;
 
   let textNodes = getTextNodes(body);
 
   let mainRegex = /%(\w+)\.(\w+)/;
-  
-  textNodes.forEach(function(node) {  
+
+  textNodes.forEach(function (node) {
     let matches = node.nodeValue.match(mainRegex);
     if (matches) {
       let type = matches[1];
       let attributeName = matches[2];
-      
+
       let element = null;
 
       if (type === "input") {
-        element = document.createElement('input');
-        element.setAttribute('type', 'text');
-        element.setAttribute('class', 'form-control w-100');
-
+        element = document.createElement("input");
+        element.setAttribute("type", "text");
+        element.setAttribute("class", "form-control w-100");
       }
 
       if (type === "textarea") {
-        element = document.createElement('textarea');
-        element.setAttribute('class', 'form-control');
+        element = document.createElement("textarea");
+        element.setAttribute("class", "form-control");
       }
 
       if (element) {
-        element.setAttribute('id', attributeName);
+        element.setAttribute("id", attributeName);
         node.parentNode.replaceChild(element, node);
       }
     }
@@ -42,18 +44,20 @@ function initializeOptions() {
 
   let regex = /%option\.(\w+)\(([^)]+)\)%/;
 
-  textNodes.forEach(function(node) {
+  textNodes.forEach(function (node) {
     let matches = node.nodeValue.match(regex);
     if (matches) {
-      let container = document.createElement('div');
+      let container = document.createElement("div");
       let id = matches[1];
-      let options = matches[2].split(';').map(option => option.trim().replace(/"/g, ''));
+      let options = matches[2]
+        .split(";")
+        .map((option) => option.trim().replace(/"/g, ""));
 
-      let select = document.createElement('select');
-      select.setAttribute('id', id);
-      select.setAttribute('class', 'form-select')
-      options.forEach(option => {
-        let optionElement = document.createElement('option');
+      let select = document.createElement("select");
+      select.setAttribute("id", id);
+      select.setAttribute("class", "form-select");
+      options.forEach((option) => {
+        let optionElement = document.createElement("option");
         optionElement.text = option;
         optionElement.value = option;
         select.add(optionElement);
@@ -65,23 +69,87 @@ function initializeOptions() {
   });
 }
 
+function initializeCheckboxes() {
+  let body = document.body;
+  if (!body) return;
+
+  let textNodes = getTextNodes(body);
+
+  let checkboxRegex = /%checkbox\.([a-zA-Z0-9-]+)%/;
+
+  textNodes.forEach(function (node) {
+    let matches = node.nodeValue.match(checkboxRegex);
+    if (matches) {
+      let id = matches[1];
+
+      let checkbox = document.createElement("input");
+      checkbox.setAttribute("type", "checkbox");
+      checkbox.setAttribute("id", id);
+      checkbox.setAttribute("class", "form-check-input");
+
+      let label = document.createElement("label");
+      label.setAttribute("for", id);
+      label.className = "form-check-label";
+      label.textContent = node.nodeValue.replace(checkboxRegex, "").trim();
+
+      let container = document.createElement("div");
+      container.setAttribute("class", "form-check");
+      container.appendChild(checkbox);
+      container.appendChild(label);
+
+      node.parentNode.replaceChild(container, node);
+    }
+  });
+}
+
+function initializeDates() {
+  let body = document.body;
+  if (!body) return;
+
+  let textNodes = getTextNodes(body);
+
+  let dateRegex = /%date\.([a-zA-Z0-9-]+)%/;
+
+  textNodes.forEach(function (node) {
+    let matches = node.nodeValue.match(dateRegex);
+    if (matches) {
+      let id = matches[1];
+
+      let dateInput = document.createElement("input");
+      dateInput.setAttribute("type", "date");
+      dateInput.setAttribute("id", id);
+      dateInput.setAttribute("class", "form-control");
+
+      node.parentNode.replaceChild(dateInput, node);
+    }
+  });
+}
+
 function getTextNodes(element) {
   let textNodes = [];
-  let walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT, null, false);
-  while(walker.nextNode()) {
+  let walker = document.createTreeWalker(
+    element,
+    NodeFilter.SHOW_TEXT,
+    null,
+    false
+  );
+  while (walker.nextNode()) {
     textNodes.push(walker.currentNode);
   }
   return textNodes;
 }
 
 function escapeRegExp(string) {
-  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
 function replaceInputTextAreas(templateString, data) {
   for (let key in data) {
     if (data.hasOwnProperty(key)) {
-      let regex = new RegExp('%(?:input|textarea)\\.' + escapeRegExp(key) + '%', 'g');
+      let regex = new RegExp(
+        "%(?:input|textarea)\\." + escapeRegExp(key) + "%",
+        "g"
+      );
       // let regex = new RegExp('%(option)\\.' + escapeRegExp(key) + '\\(([^)]+)\\)%', 'g');
       templateString = templateString.replace(regex, data[key]);
     }
@@ -94,7 +162,33 @@ function replaceOptions(templateString, data) {
   for (let key in data) {
     if (data.hasOwnProperty(key)) {
       // let regex = new RegExp('%(?:input|textarea)\\.' + escapeRegExp(key) + '%', 'g');
-      let regex = new RegExp('%(option)\\.' + escapeRegExp(key) + '\\(([^)]+)\\)%', 'g');
+      let regex = new RegExp(
+        "%(option)\\." + escapeRegExp(key) + "\\(([^)]+)\\)%",
+        "g"
+      );
+      templateString = templateString.replace(regex, data[key]);
+    }
+  }
+  return templateString;
+}
+
+function replaceCheckboxes(templateString, data) {
+  for (let key in data) {
+    if (
+      data.hasOwnProperty(key) &&
+      (data[key] === CHECKED_CHECKBOX || data[key] === UNCHECKED_CHECKBOX)
+    ) {
+      let regex = new RegExp("%checkbox\\." + escapeRegExp(key) + "%", "g");
+      templateString = templateString.replace(regex, data[key]);
+    }
+  }
+  return templateString;
+}
+
+function replaceDates(templateString, data) {
+  for (let key in data) {
+    if (data.hasOwnProperty(key)) {
+      let regex = new RegExp("%date\\." + escapeRegExp(key) + "%", "g");
       templateString = templateString.replace(regex, data[key]);
     }
   }
@@ -103,33 +197,60 @@ function replaceOptions(templateString, data) {
 
 function processData() {
   let data = {};
-  let resultString;
-  let resultNameString;
-  let inputs = document.querySelectorAll('input[type="text"], textarea, select');
-  inputs.forEach(function(input) {
-    data[input.id] = input.value;
+  let inputs = document.querySelectorAll(
+    'input[type="text"], textarea, select, input[type="checkbox"], input[type="date"]'
+  );
+  inputs.forEach(function (input) {
+    if (input.type === "checkbox") {
+      data[input.id] = input.checked ? CHECKED_CHECKBOX : UNCHECKED_CHECKBOX;
+    } else if (input.type === "date") {
+      data[input.id] = formatDate(input.value);
+    } else {
+      data[input.id] = input.value;
+    }
   });
+
   console.log(data);
   let templateString = window.templateString;
   let templateNameString = window.templateNameString;
-  resultString = replaceInputTextAreas(templateString, data);
+
+  let resultString = replaceInputTextAreas(templateString, data);
   resultString = replaceOptions(resultString, data);
-  resultNameString = replaceInputTextAreas(templateNameString, data);
+  resultString = replaceCheckboxes(resultString, data);
+  resultString = replaceDates(resultString, data);
+
+  let resultNameString = replaceInputTextAreas(templateNameString, data);
   resultNameString = replaceOptions(resultNameString, data);
-  document.getElementById('result-name').value = resultNameString;
-  document.getElementById('result').value = resultString;
+  resultNameString = replaceCheckboxes(resultNameString, data);
+  resultNameString = replaceDates(resultNameString, data);
+
+  document.getElementById("result-name").value = resultNameString;
+  document.getElementById("result").value = resultString;
 }
 
 function copyResults(id) {
   const copy = document.getElementById(id).value;
-  navigator.clipboard.writeText(copy).then(function() {
-    console.log('[COPY]: SUCCESS');
-  }, function(err) {
-    console.error('[COPY]: ERROR. ', err);
-  });
+  navigator.clipboard.writeText(copy).then(
+    function () {
+      console.log("[COPY]: SUCCESS");
+    },
+    function (err) {
+      console.error("[COPY]: ERROR. ", err);
+    }
+  );
 }
 
-document.addEventListener("DOMContentLoaded", function() {
+function formatDate(dateString) {
+  let dateParts = dateString.split("-");
+  if (dateParts.length === 3) {
+    return `${dateParts[2]}/${dateParts[1]}/${dateParts[0]}`; // DD/MM/YYYY
+  }
+  return dateString;
+}
+
+document.addEventListener("DOMContentLoaded", function () {
   initializeInputs();
   initializeOptions();
+  initializeCheckboxes();
+  initializeDates();
 });
