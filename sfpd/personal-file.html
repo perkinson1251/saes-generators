@@ -19,12 +19,12 @@ PERSONAL FILE[/size][/center]
 [size=120][center]%option.position("Station Commander"; "Watch Commander"; "Field Supervisor"; "Field Training Coordinator"; "Assistant Supervisor"; "Field Training Officer"; "Patrol Officer"; "Probationary Officer")% — %input.namesurname%, #%input.jet%[/center][/size]
 [b][size=120]I ЛИЧНАЯ ИНФОРМАЦИЯ[/size][/b]
 [hr=black][/hr]
-[coll3][a=Дата рождения]%input.dob%[/a]|[a=Возраст (полных лет)]%input.age%[/a]|[a=Пол]%input.sex%[/a][/coll3]
+[coll3][a=Дата рождения]%date.dob%[/a]|[a=Возраст (полных лет)]%input.age%[/a]|[a=Пол]%input.sex%[/a][/coll3]
 [coll][a=Национальность]%input.nationality%[/a]|[a=Номер телефона]%input.number%[/a][/coll]
 
 [b][size=120]II ИНФОРМАЦИЯ О СЛУЖБЕ[/size][/b]
 [hr=black][/hr]
-[coll][a=Дата поступления на службу]%input.start%[/a]|[a=Стаж службы (полных лет)]%input.timeonservice%[/a][/coll][/paper]`;
+[coll][a=Дата поступления на службу]%date.start%[/a]|[a=Стаж службы (полных лет)]%input.timeonservice%[/a][/coll][/paper]`;
     </script>
   </head>
   <body>
@@ -52,7 +52,7 @@ PERSONAL FILE[/size][/center]
             <tr>
               <td style="vertical-align: top; width: 26%; padding-right: 10px">
                 <span style="font-weight: bold; font-size: 90%; line-height: 116%">Дата рождения</span><br />
-                <div style="background-color: white; color: #555; border: 1px solid #ccc">%input.dob%</div>
+                <div style="background-color: white; color: #555; border: 1px solid #ccc">%date.dob%</div>
               </td>
               <td style="vertical-align: top; width: 26%">
                 <span style="font-weight: bold; font-size: 90%; line-height: 116%">Возраст (полных лет)</span><br />
@@ -89,7 +89,7 @@ PERSONAL FILE[/size][/center]
             <tr>
               <td style="vertical-align: top; width: 50%; padding-right: 10px">
                 <span style="font-weight: bold; font-size: 90%; line-height: 116%">Дата поступления на службу</span><br />
-                <div style="background-color: white; color: #555; border: 1px solid #ccc">%input.start%</div>
+                <div style="background-color: white; color: #555; border: 1px solid #ccc">%date.start%</div>
               </td>
               <td style="vertical-align: top; width: 50%; padding-left: 10px">
                 <span style="font-weight: bold; font-size: 90%; line-height: 116%">Стаж службы (полных лет)</span><br />

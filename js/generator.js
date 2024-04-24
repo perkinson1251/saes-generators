@@ -49,9 +49,7 @@ function initializeOptions() {
     if (matches) {
       let container = document.createElement("div");
       let id = matches[1];
-      let options = matches[2]
-        .split(";")
-        .map((option) => option.trim().replace(/"/g, ""));
+      let options = matches[2].split(";").map((option) => option.trim().replace(/"/g, ""));
 
       let select = document.createElement("select");
       select.setAttribute("id", id);
@@ -118,7 +116,7 @@ function initializeDates() {
       let dateInput = document.createElement("input");
       dateInput.setAttribute("type", "date");
       dateInput.setAttribute("id", id);
-      dateInput.setAttribute("class", "form-control");
+      dateInput.setAttribute("class", "form-control w-100");
 
       node.parentNode.replaceChild(dateInput, node);
     }
@@ -127,12 +125,7 @@ function initializeDates() {
 
 function getTextNodes(element) {
   let textNodes = [];
-  let walker = document.createTreeWalker(
-    element,
-    NodeFilter.SHOW_TEXT,
-    null,
-    false
-  );
+  let walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT, null, false);
   while (walker.nextNode()) {
     textNodes.push(walker.currentNode);
   }
@@ -146,10 +139,7 @@ function escapeRegExp(string) {
 function replaceInputTextAreas(templateString, data) {
   for (let key in data) {
     if (data.hasOwnProperty(key)) {
-      let regex = new RegExp(
-        "%(?:input|textarea)\\." + escapeRegExp(key) + "%",
-        "g"
-      );
+      let regex = new RegExp("%(?:input|textarea)\\." + escapeRegExp(key) + "%", "g");
       // let regex = new RegExp('%(option)\\.' + escapeRegExp(key) + '\\(([^)]+)\\)%', 'g');
       templateString = templateString.replace(regex, data[key]);
     }
@@ -162,10 +152,7 @@ function replaceOptions(templateString, data) {
   for (let key in data) {
     if (data.hasOwnProperty(key)) {
       // let regex = new RegExp('%(?:input|textarea)\\.' + escapeRegExp(key) + '%', 'g');
-      let regex = new RegExp(
-        "%(option)\\." + escapeRegExp(key) + "\\(([^)]+)\\)%",
-        "g"
-      );
+      let regex = new RegExp("%(option)\\." + escapeRegExp(key) + "\\(([^)]+)\\)%", "g");
       templateString = templateString.replace(regex, data[key]);
     }
   }
@@ -174,10 +161,7 @@ function replaceOptions(templateString, data) {
 
 function replaceCheckboxes(templateString, data) {
   for (let key in data) {
-    if (
-      data.hasOwnProperty(key) &&
-      (data[key] === CHECKED_CHECKBOX || data[key] === UNCHECKED_CHECKBOX)
-    ) {
+    if (data.hasOwnProperty(key) && (data[key] === CHECKED_CHECKBOX || data[key] === UNCHECKED_CHECKBOX)) {
       let regex = new RegExp("%checkbox\\." + escapeRegExp(key) + "%", "g");
       templateString = templateString.replace(regex, data[key]);
     }
@@ -197,9 +181,7 @@ function replaceDates(templateString, data) {
 
 function processData() {
   let data = {};
-  let inputs = document.querySelectorAll(
-    'input[type="text"], textarea, select, input[type="checkbox"], input[type="date"]'
-  );
+  let inputs = document.querySelectorAll('input[type="text"], textarea, select, input[type="checkbox"], input[type="date"]');
   inputs.forEach(function (input) {
     if (input.type === "checkbox") {
       data[input.id] = input.checked ? CHECKED_CHECKBOX : UNCHECKED_CHECKBOX;
