@@ -1,5 +1,3 @@
-import { escapeRegExp, formatDate, getTextNodes } from "./utils.js";
-
 const CHECKED_CHECKBOX = "[check][/check]";
 const UNCHECKED_CHECKBOX = "[uncheck][/uncheck]";
 
@@ -76,7 +74,7 @@ function initializeCheckboxes() {
 
   let textNodes = getTextNodes(body);
 
-  let cbRegex = textNodes.forEach(function (node) {
+  textNodes.forEach(function (node) {
     let matches = node.nodeValue.match(CHECKBOX_REGEX);
     if (matches) {
       let id = matches[1];
@@ -89,7 +87,7 @@ function initializeCheckboxes() {
       let label = document.createElement("label");
       label.setAttribute("for", id);
       label.className = "form-check-label";
-      label.textContent = node.nodeValue.replace(cbRegex, "").trim();
+      label.textContent = node.nodeValue.replace(CHECKBOX_REGEX, "").trim();
 
       let container = document.createElement("div");
       container.setAttribute("class", "form-check");
@@ -200,3 +198,37 @@ document.addEventListener("DOMContentLoaded", function () {
   initializeCheckboxes();
   initializeDates();
 });
+
+// Utils
+const getTextNodes = (element) => {
+  let textNodes = [];
+  let walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT, null, false);
+  while (walker.nextNode()) {
+    textNodes.push(walker.currentNode);
+  }
+  return textNodes;
+};
+
+const escapeRegExp = (string) => {
+  return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+};
+
+function copyResults(id) {
+  const copy = document.getElementById(id).value;
+  navigator.clipboard.writeText(copy).then(
+    function () {
+      console.log("[COPY]: SUCCESS");
+    },
+    function (err) {
+      console.error("[COPY]: ERROR. ", err);
+    }
+  );
+}
+
+function formatDate(dateString) {
+  let dateParts = dateString.split("-");
+  if (dateParts.length === 3) {
+    return `${dateParts[2]}/${dateParts[1]}/${dateParts[0]}`; // DD/MM/YYYY
+  }
+  return dateString;
+}
