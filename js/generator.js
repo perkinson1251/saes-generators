@@ -1,4 +1,4 @@
-import { escapeRegExp, formatDate, getTextNodes } from "./utils";
+import { escapeRegExp, formatDate, getTextNodes } from "./utils.js";
 
 const CHECKED_CHECKBOX = "[check][/check]";
 const UNCHECKED_CHECKBOX = "[uncheck][/uncheck]";
