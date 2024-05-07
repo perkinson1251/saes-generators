@@ -6,7 +6,7 @@ A simple application to generate fillable BB forms for phpbb(-ex) engine forums.
 
 #### LSPD:
 
-N/A
+- [Civilian Employee Application](https://perkinson1251.github.io/saes-generators.github.io/lspd/civilian-application "Civilian Employee Application")
 
 ---
 

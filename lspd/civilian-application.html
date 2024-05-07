@@ -5,20 +5,233 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../css/main.css" />
     <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon" />
-    <title>SFPD BackHome Application</title>
+    <title>LSPD Civilian Employee</title>
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous" defer></script>
 
     <script>
-      window.templateNameString = `Nick Name (ooc nick)`;
-      window.templateString = ``;
+      window.templateNameString = `%input.name(ЗАПОЛНИТЬ)% %input.surname(ЗАПОЛНИТЬ)% (%input.oocnick(ООС НИКНЕЙМ)%)`;
+      window.templateString = `[doc][pblock=10,#fff][lspd-header][/lspd-header]
+[hr][/hr]
+[size=120][b]Регистрационная информация[/b][/size]
+
+[coll4][a=Имя]%input.name(ЗАПОЛНИТЬ)%[/a]|[a=Второе имя]%input.sname(ЗАПОЛНИТЬ/ОТСУТСТВУЕТ)%[/a]|[a=Фамилия]%input.surname(ЗАПОЛНИТЬ)%[/a]|[a=Номер соц. страхования]%input.insurance(XXX-XX-XXXX)%[/a][/coll4]
+[coll3][a=Дата рождения]%date.dob%[/a]|[a=Телефон]%input.phone(ЗАПОЛНИТЬ)%[/a]|[a=Электронный адрес]%input.email(ЗАПОЛНИТЬ)%[/a][/coll3]
+
+[hr][/hr]
+[coll][size=90][b]Пол[/b]
+%checkbox.sexm% Мужской
+%checkbox.sexf% Женский[/size]|[size=90][b]Этническая группа / Раса[/b]
+%checkbox.raceWhite% Светлокожий
+%checkbox.raceBlack% Темнокожий/Афроамериканец
+%checkbox.raceMex% Мексиканец /Латиноамериканец
+%checkbox.raceIndian% Индеец
+%checkbox.raceAsian% Азиат
+%checkbox.racePhilipino% Филиппинец[/size][/coll]
+[size=90][b]Укажите желаемую должность и почему вы хотите на ней работать?[/b][/size]
+[textarea=#ccc][color=#555555][justify]%input.position(ЗАПОЛНИТЬ)%[/justify][/color][/textarea]
+[size=90][b]Гражданство / Резиденция[/b]
+%checkbox.place1% Гражданин США
+%checkbox.place2% Статус иностранца резидента, который имеет право работать и подал заявление на получение гражданства США
+%checkbox.place3% Не один из перечисленных[/size]
+
+[size=90][b]Образование[/b]
+%checkbox.edu1% Я получил(-а) 2-летную (ассоциированный) или 4-летнею (бакалавр) степень в колледже или университете, аккредитованных агентством, признанным Министерством образования США
+%checkbox.edu2% Я окончил(-а) государственную американскую среднюю школу или частную школу, аккредитованную агентством, признанным Министерством образования США
+%checkbox.edu3% Я получил(-а) диплом об общем образовании (GED) или эквивалент в американском институте
+%checkbox.edu4% Ни одно из заявлений об образовании не распространяется на меня[/size]
+
+[hr][/hr]
+[size=120][b](( OOC информация ))[/b][/size]
+
+[coll3][a=Имя]%input.oocname(ЗАПОЛНИТЬ)%[/a]|[a=Возраст]%input.oocage(ЗАПОЛНИТЬ)%[/a]|[a=Часовой пояс]%input.oocgmt(ЗАПОЛНИТЬ)%[/a][/coll3]
+[coll][a=Ссылка на VK]%input.oocvk(vk.com/ЗАПОЛНИТЬ)%[/a]|[a=Ссылка на форумный аккаунт (G-RP)]%input.oocgrp(https://forum.gambit-rp.ru/members/ЗАПОЛНИТЬ)%[/a][/coll]
+[size=90][b]Проекты, на которых вы играли ранее[/b][/size]
+[textarea=#ccc][color=#555555][justify]%input.oocproj(ЗАПОЛНИТЬ)%[/justify][/color][/textarea]
+[size=90][b]Фракции, в которых вы играли ранее[/b][/size]
+[textarea=#ccc][color=#555555][justify]%input.oocfrac(ЗАПОЛНИТЬ)%[/justify][/color][/textarea]
+[size=90][b]Ваши доказательства игры (СС, при наличии)[/b][/size]
+[textarea=#ccc][color=#555555][justify]%input.oocSS(ЗАПОЛНИТЬ)%[/justify][/color][/textarea]
+[size=90][b]Что вы собираетесь играть во фракции, опишите будущего персонажа и планы на него:[/b][/size]
+[textarea=#ccc][color=#555555][justify]%input.oocplans(ЗАПОЛНИТЬ)%[/justify][/color][/textarea]
+[size=90][b]Имеется ли у Вас TeamSpeak3 и рабочий микрофон? Можете ли Вы свободно общаться в TeamSpeak3?[/b]
+%checkbox.ts1% Да
+%checkbox.ts2% Нет[/size]
+
+[size=90][b]Соглашение[/b]
+[justify]Я ознакомлен(-а) с официальным разделом. Я соглашаюсь, что если покину фракцию в течении 14 дней, то буду занесен в черный список (ЧС) фракции без права выхода. Я соглашаюсь, что мое заявление может быть отклонено без объяснения причин. Я понимаю, что в случае слива любой информации с форумов сообщества SA-ES я буду занесен в черный список SA-ES. После прохождения академии я обязуюсь изучить всю информацию на форуме (включая мануал и хендбук) и соглашаюсь с тем, что могу быть уволен за несоблюдение мануала фракции.[/justify]
+%checkbox.agree% Я принимаю условия данного заявления[/size][/pblock][/doc]`;
     </script>
   </head>
   <body>
     <div class="generator__main-content">
-      
+      %input.oocnick(ООС НИКНЕЙМ)%
+      <div style="border: 1px solid black; padding: 5px; background-color: rgb(255, 255, 255); color: rgb(0, 0, 0)">
+        <div style="padding: 10px; background-color: #fff">
+          <span
+            ><div style="margin: 10px 0; user-select: none">
+              <div style="text-align: center; font-family: PT Serif; font-size: 1.4em"><b>LOS SANTOS POLICE DEPARTMENT</b></div>
+              <div style="margin-top: 10px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center">
+                <div style="text-align: left">
+                  <b style="font-weight: 1000">FRED FITZPATRICK</b><br />
+                  Chief of Police
+                </div>
+                <div style="text-align: center"><img src="https://i.imgur.com/c42AM8w.png" style="max-height: 130px" /></div>
+                <div style="text-align: right; margin-top: 10px">
+                  P.O. Box 30412<br />
+                  Los Santos Police Department<br />
+                  Los Santos, San Andreas 90030<br />
+                  206 Station Avenue
+                </div>
+              </div>
+            </div>
+            <br />
+            <hr />
+            <br /><span style="font-size: 120%; line-height: 116%"><span style="font-weight: bold">Регистрационная информация</span></span
+            ><br /><br />
+            <table width="100%">
+              <tbody>
+                <tr>
+                  <td style="vertical-align: top; width: 26%; padding-right: 10px">
+                    <span style="font-weight: bold; font-size: 90%; line-height: 116%">Имя</span><br />
+                    <div style="background-color: white; color: #555; border: 1px solid #ccc">%input.name(ЗАПОЛНИТЬ)%</div>
+                  </td>
+                  <td style="vertical-align: top; width: 26%; padding-right: 10px">
+                    <span style="font-weight: bold; font-size: 90%; line-height: 116%">Второе имя</span><br />
+                    <div style="background-color: white; color: #555; border: 1px solid #ccc">%input.sname(ЗАПОЛНИТЬ/ОТСУТСТВУЕТ)%</div>
+                  </td>
+                  <td style="vertical-align: top; width: 26%">
+                    <span style="font-weight: bold; font-size: 90%; line-height: 116%">Фамилия</span><br />
+                    <div style="background-color: white; color: #555; border: 1px solid #ccc">%input.surname(ЗАПОЛНИТЬ)%</div>
+                  </td>
+                  <td style="vertical-align: top; width: 26%; padding-left: 10px">
+                    <span style="font-weight: bold; font-size: 90%; line-height: 116%">Номер соц. страхования</span><br />
+                    <div style="background-color: white; color: #555; border: 1px solid #ccc">%input.insurance(XXX-XX-XXXX)%</div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <br />
+            <table width="100%">
+              <tbody>
+                <tr>
+                  <td style="vertical-align: top; width: 26%; padding-right: 10px">
+                    <span style="font-weight: bold; font-size: 90%; line-height: 116%">Дата рождения</span><br />
+                    <div style="background-color: white; color: #555; border: 1px solid #ccc">%date.dob%</div>
+                  </td>
+                  <td style="vertical-align: top; width: 26%">
+                    <span style="font-weight: bold; font-size: 90%; line-height: 116%">Телефон</span><br />
+                    <div style="background-color: white; color: #555; border: 1px solid #ccc">%input.phone(ЗАПОЛНИТЬ)%</div>
+                  </td>
+                  <td style="vertical-align: top; width: 26%; padding-left: 10px">
+                    <span style="font-weight: bold; font-size: 90%; line-height: 116%">Электронный адрес</span><br />
+                    <div style="background-color: white; color: #555; border: 1px solid #ccc">%input.email(ЗАПОЛНИТЬ)%</div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <br /><br />
+            <hr />
+            <br />
+            <table width="100%">
+              <tbody>
+                <tr>
+                  <td style="vertical-align: top; width: 50%; padding-right: 10px">
+                    <span style="font-size: 90%; line-height: 116%"><span style="font-weight: bold">Пол</span><br />%checkbox.sexm% Мужской<br />%checkbox.sexf% Женский</span>
+                  </td>
+                  <td style="vertical-align: top; width: 50%; padding-left: 10px">
+                    <span style="font-size: 90%; line-height: 116%"
+                      ><span style="font-weight: bold">Этническая группа / Раса</span><br />%checkbox.raceWhite% Светлокожий<br />%checkbox.raceBlack% Темнокожий/Афроамериканец<br />%checkbox.raceMex% Мексиканец /Латиноамериканец<br />%checkbox.raceIndian%
+                      Индеец<br />%checkbox.raceAsian% Азиат<br />%checkbox.racePhilipino% Филиппинец</span
+                    >
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <br /><span style="font-size: 90%; line-height: 116%"><span style="font-weight: bold">Укажите желаемую должность и почему вы хотите на ней работать?</span></span
+            ><br />
+            <div style="border: 1px solid #ccc; padding: 10px; background-color: #ffffff">
+              <span style="color: #555555"><div style="text-align: justify">%input.position(ЗАПОЛНИТЬ)%</div></span>
+            </div>
+            <br /><span style="font-size: 90%; line-height: 116%"
+              ><span style="font-weight: bold">Гражданство / Резиденция</span><br />%checkbox.place1% Гражданин США<br />%checkbox.place2% Статус иностранца резидента, который имеет право работать и подал заявление на получение гражданства США<br />%checkbox.place3%
+              Не один из перечисленных</span
+            ><br /><br /><span style="font-size: 90%; line-height: 116%"
+              ><span style="font-weight: bold">Образование</span><br />%checkbox.edu1% Я получил(-а) 2-летную (ассоциированный) или 4-летнею (бакалавр) степень в колледже или университете, аккредитованных агентством, признанным Министерством
+              образования США<br />%checkbox.edu2% Я окончил(-а) государственную американскую среднюю школу или частную школу, аккредитованную агентством, признанным Министерством образования США<br />%checkbox.edu3% Я получил(-а) диплом об общем
+              образовании (GED) или эквивалент в американском институте<br />%checkbox.edu4% Ни одно из заявлений об образовании не распространяется на меня</span
+            ><br /><br />
+            <hr />
+            <br /><span style="font-size: 120%; line-height: 116%"><span style="font-weight: bold">(( OOC информация ))</span></span
+            ><br /><br />
+            <table width="100%">
+              <tbody>
+                <tr>
+                  <td style="vertical-align: top; width: 26%; padding-right: 10px">
+                    <span style="font-weight: bold; font-size: 90%; line-height: 116%">Имя</span><br />
+                    <div style="background-color: white; color: #555; border: 1px solid #ccc">%input.oocname(ЗАПОЛНИТЬ)%</div>
+                  </td>
+                  <td style="vertical-align: top; width: 26%">
+                    <span style="font-weight: bold; font-size: 90%; line-height: 116%">Возраст</span><br />
+                    <div style="background-color: white; color: #555; border: 1px solid #ccc">%input.oocage(ЗАПОЛНИТЬ)%</div>
+                  </td>
+                  <td style="vertical-align: top; width: 26%; padding-left: 10px">
+                    <span style="font-weight: bold; font-size: 90%; line-height: 116%">Часовой пояс</span><br />
+                    <div style="background-color: white; color: #555; border: 1px solid #ccc">%input.oocgmt(ЗАПОЛНИТЬ)%</div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <br />
+            <table width="100%">
+              <tbody>
+                <tr>
+                  <td style="vertical-align: top; width: 50%; padding-right: 10px">
+                    <span style="font-weight: bold; font-size: 90%; line-height: 116%">Ссылка на VK</span><br />
+                    <div style="background-color: white; color: #555; border: 1px solid #ccc">%input.oocvk(vk.com/ЗАПОЛНИТЬ)%</div>
+                  </td>
+                  <td style="vertical-align: top; width: 50%; padding-left: 10px">
+                    <span style="font-weight: bold; font-size: 90%; line-height: 116%">Ссылка на форумный аккаунт (G-RP)</span><br />
+                    <div style="background-color: white; color: #555; border: 1px solid #ccc">%input.oocgrp(https://forum.gambit-rp.ru/members/ЗАПОЛНИТЬ)%</div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <br /><span style="font-size: 90%; line-height: 116%"><span style="font-weight: bold">Проекты, на которых вы играли ранее</span></span
+            ><br />
+            <div style="border: 1px solid #ccc; padding: 10px; background-color: #ffffff">
+              <span style="color: #555555"><div style="text-align: justify">%input.oocproj(ЗАПОЛНИТЬ)%</div></span>
+            </div>
+            <br /><span style="font-size: 90%; line-height: 116%"><span style="font-weight: bold">Фракции, в которых вы играли ранее</span></span
+            ><br />
+            <div style="border: 1px solid #ccc; padding: 10px; background-color: #ffffff">
+              <span style="color: #555555"><div style="text-align: justify">%input.oocfrac(ЗАПОЛНИТЬ)%</div></span>
+            </div>
+            <br /><span style="font-size: 90%; line-height: 116%"><span style="font-weight: bold">Ваши доказательства игры (СС, при наличии)</span></span
+            ><br />
+            <div style="border: 1px solid #ccc; padding: 10px; background-color: #ffffff">
+              <span style="color: #555555"><div style="text-align: justify">%input.oocSS(ЗАПОЛНИТЬ)%</div></span>
+            </div>
+            <br /><span style="font-size: 90%; line-height: 116%"><span style="font-weight: bold">Что вы собираетесь играть во фракции, опишите будущего персонажа и планы на него:</span></span
+            ><br />
+            <div style="border: 1px solid #ccc; padding: 10px; background-color: #ffffff">
+              <span style="color: #555555"><div style="text-align: justify">%input.oocplans(ЗАПОЛНИТЬ)%</div></span>
+            </div>
+            <br /><span style="font-size: 90%; line-height: 116%"><span style="font-weight: bold">Имеется ли у Вас TeamSpeak3 и рабочий микрофон? Можете ли Вы свободно общаться в TeamSpeak3?</span><br />%checkbox.ts1% Да<br />%checkbox.ts2% Нет</span
+            ><br /><br /><span style="font-size: 90%; line-height: 116%"
+              ><span style="font-weight: bold">Соглашение</span><br />
+              <div style="text-align: justify">
+                Я ознакомлен(-а) с официальным разделом. Я соглашаюсь, что если покину фракцию в течении 14 дней, то буду занесен в черный список (ЧС) фракции без права выхода. Я соглашаюсь, что мое заявление может быть отклонено без объяснения
+                причин. Я понимаю, что в случае слива любой информации с форумов сообщества SA-ES я буду занесен в черный список SA-ES. После прохождения академии я обязуюсь изучить всю информацию на форуме (включая мануал и хендбук) и соглашаюсь с
+                тем, что могу быть уволен за несоблюдение мануала фракции.
+              </div>
+              <br />%checkbox.agree% Я принимаю условия данного заявления</span
+            ></span
+          >
+        </div>
+      </div>
       <hr />
       <div class="generator__footer">
         <button class="btn btn-success" id="processButton" onclick="processData()" data-bs-toggle="modal" data-bs-target="#resultModal">Сгенерировать форму</button>

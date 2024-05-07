@@ -1,7 +1,8 @@
 const CHECKED_CHECKBOX = "[check][/check]";
 const UNCHECKED_CHECKBOX = "[uncheck][/uncheck]";
 
-const MAIN_REGEX = /%(\w+)\.(\w+)/;
+// const MAIN_REGEX = /%(\w+)\.(\w+)/;
+const MAIN_REGEX = /%(\w+)\.(\w+)(?:\((.*?)\))?%/;
 const OPTIONS_REGEX = /%option\.(\w+)\(([^)]+)\)%/;
 const CHECKBOX_REGEX = /%checkbox\.([a-zA-Z0-9-]+)%/;
 const DATE_REGEX = /%date\.([a-zA-Z0-9-]+)%/;
@@ -17,6 +18,7 @@ function initializeInputs() {
     if (matches) {
       let type = matches[1];
       let attributeName = matches[2];
+      let placeholder = matches[3];
 
       let element = null;
 
@@ -33,6 +35,9 @@ function initializeInputs() {
 
       if (element) {
         element.setAttribute("id", attributeName);
+        if (placeholder) {
+          element.setAttribute("placeholder", placeholder);
+        }
         node.parentNode.replaceChild(element, node);
       }
     }
@@ -120,10 +125,11 @@ function initializeDates() {
   });
 }
 
-function replaceInputTextAreas(templateString, data) {
+function replaceInputTextareas(templateString, data) {
   for (let key in data) {
     if (data.hasOwnProperty(key)) {
-      let regex = new RegExp("%(?:input|textarea)\\." + escapeRegExp(key) + "%", "g");
+      // let regex = new RegExp("%(?:input|textarea)\\." + escapeRegExp(key) + "%", "g");
+      let regex = new RegExp("%(?:input|textarea)\\." + escapeRegExp(key) + "(?:\\((.*?)\\))?%", "g");
       templateString = templateString.replace(regex, data[key]);
     }
   }
@@ -178,12 +184,12 @@ function processData() {
   let templateString = window.templateString;
   let templateNameString = window.templateNameString;
 
-  let resultString = replaceInputTextAreas(templateString, data);
+  let resultString = replaceInputTextareas(templateString, data);
   resultString = replaceOptions(resultString, data);
   resultString = replaceCheckboxes(resultString, data);
   resultString = replaceDates(resultString, data);
 
-  let resultNameString = replaceInputTextAreas(templateNameString, data);
+  let resultNameString = replaceInputTextareas(templateNameString, data);
   resultNameString = replaceOptions(resultNameString, data);
   resultNameString = replaceCheckboxes(resultNameString, data);
   resultNameString = replaceDates(resultNameString, data);
