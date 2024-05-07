@@ -1,5 +1,12 @@
+import { escapeRegExp, formatDate, getTextNodes } from "./utils";
+
 const CHECKED_CHECKBOX = "[check][/check]";
 const UNCHECKED_CHECKBOX = "[uncheck][/uncheck]";
+
+const MAIN_REGEX = /%(\w+)\.(\w+)/;
+const OPTIONS_REGEX = /%option\.(\w+)\(([^)]+)\)%/;
+const CHECKBOX_REGEX = /%checkbox\.([a-zA-Z0-9-]+)%/;
+const DATE_REGEX = /%date\.([a-zA-Z0-9-]+)%/;
 
 function initializeInputs() {
   let body = document.body;
@@ -7,10 +14,8 @@ function initializeInputs() {
 
   let textNodes = getTextNodes(body);
 
-  let mainRegex = /%(\w+)\.(\w+)/;
-
   textNodes.forEach(function (node) {
-    let matches = node.nodeValue.match(mainRegex);
+    let matches = node.nodeValue.match(MAIN_REGEX);
     if (matches) {
       let type = matches[1];
       let attributeName = matches[2];
@@ -42,10 +47,8 @@ function initializeOptions() {
 
   let textNodes = getTextNodes(body);
 
-  let regex = /%option\.(\w+)\(([^)]+)\)%/;
-
   textNodes.forEach(function (node) {
-    let matches = node.nodeValue.match(regex);
+    let matches = node.nodeValue.match(OPTIONS_REGEX);
     if (matches) {
       let container = document.createElement("div");
       let id = matches[1];
@@ -73,10 +76,8 @@ function initializeCheckboxes() {
 
   let textNodes = getTextNodes(body);
 
-  let checkboxRegex = /%checkbox\.([a-zA-Z0-9-]+)%/;
-
-  textNodes.forEach(function (node) {
-    let matches = node.nodeValue.match(checkboxRegex);
+  let cbRegex = textNodes.forEach(function (node) {
+    let matches = node.nodeValue.match(CHECKBOX_REGEX);
     if (matches) {
       let id = matches[1];
 
@@ -88,7 +89,7 @@ function initializeCheckboxes() {
       let label = document.createElement("label");
       label.setAttribute("for", id);
       label.className = "form-check-label";
-      label.textContent = node.nodeValue.replace(checkboxRegex, "").trim();
+      label.textContent = node.nodeValue.replace(cbRegex, "").trim();
 
       let container = document.createElement("div");
       container.setAttribute("class", "form-check");
@@ -106,10 +107,8 @@ function initializeDates() {
 
   let textNodes = getTextNodes(body);
 
-  let dateRegex = /%date\.([a-zA-Z0-9-]+)%/;
-
   textNodes.forEach(function (node) {
-    let matches = node.nodeValue.match(dateRegex);
+    let matches = node.nodeValue.match(DATE_REGEX);
     if (matches) {
       let id = matches[1];
 
@@ -123,24 +122,10 @@ function initializeDates() {
   });
 }
 
-function getTextNodes(element) {
-  let textNodes = [];
-  let walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT, null, false);
-  while (walker.nextNode()) {
-    textNodes.push(walker.currentNode);
-  }
-  return textNodes;
-}
-
-function escapeRegExp(string) {
-  return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-}
-
 function replaceInputTextAreas(templateString, data) {
   for (let key in data) {
     if (data.hasOwnProperty(key)) {
       let regex = new RegExp("%(?:input|textarea)\\." + escapeRegExp(key) + "%", "g");
-      // let regex = new RegExp('%(option)\\.' + escapeRegExp(key) + '\\(([^)]+)\\)%', 'g');
       templateString = templateString.replace(regex, data[key]);
     }
   }
@@ -151,7 +136,6 @@ function replaceOptions(templateString, data) {
   console.log(templateString);
   for (let key in data) {
     if (data.hasOwnProperty(key)) {
-      // let regex = new RegExp('%(?:input|textarea)\\.' + escapeRegExp(key) + '%', 'g');
       let regex = new RegExp("%(option)\\." + escapeRegExp(key) + "\\(([^)]+)\\)%", "g");
       templateString = templateString.replace(regex, data[key]);
     }
@@ -208,26 +192,6 @@ function processData() {
 
   document.getElementById("result-name").value = resultNameString;
   document.getElementById("result").value = resultString;
-}
-
-function copyResults(id) {
-  const copy = document.getElementById(id).value;
-  navigator.clipboard.writeText(copy).then(
-    function () {
-      console.log("[COPY]: SUCCESS");
-    },
-    function (err) {
-      console.error("[COPY]: ERROR. ", err);
-    }
-  );
-}
-
-function formatDate(dateString) {
-  let dateParts = dateString.split("-");
-  if (dateParts.length === 3) {
-    return `${dateParts[2]}/${dateParts[1]}/${dateParts[0]}`; // DD/MM/YYYY
-  }
-  return dateString;
 }
 
 document.addEventListener("DOMContentLoaded", function () {

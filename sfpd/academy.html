@@ -8,18 +8,8 @@
     <title>SFPD Academy Application</title>
 
     <!-- Bootstrap -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-      crossorigin="anonymous"
-    />
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-      crossorigin="anonymous"
-      defer
-    ></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous" defer></script>
 
     <script>
       window.templateNameString = `[POQ1] %input.fullname%`;
@@ -126,8 +116,7 @@
             <span style="font-weight: bold"><span style="font-size: 150%; line-height: 116%">ЗАЯВЛЕНИЕ О ПРИЕМЕ</span></span>
           </div>
           <br /><br /><span style="font-weight: bold"><span style="font-size: 130%; line-height: 116%">Инструкции для заявителя</span></span
-          ><br />Информация, которую вы предоставляете в этой заявке, будет использоваться в ходе проверки вашего прошлого для определения вашей пригодности на должность офицера мира в Сан-Андреас в
-          соответствии с Регуляцией Комиссии POST 1953.<br />
+          ><br />Информация, которую вы предоставляете в этой заявке, будет использоваться в ходе проверки вашего прошлого для определения вашей пригодности на должность офицера мира в Сан-Андреас в соответствии с Регуляцией Комиссии POST 1953.<br />
           <ul>
             <li>Вы несете ответственность за заполнение этой формы и предоставление всей необходимой информации.</li>
             <li>Этот документ должен быть заполнен электронно и распечатан.</li>
@@ -135,10 +124,9 @@
             <li>Отправьте заполненную форму своему инспектору по проверке или в орган, в который вы подаете заявление. НЕ отправляйте форму в POST.</li>
           </ul>
           <br /><span style="font-weight: bold"><span style="font-size: 130%; line-height: 116%">Основания для дисквалификации</span></span
-          ><br />Существует очень мало автоматических оснований для отказа. Даже проблемы с прошлым поведением, такие как употребление наркотиков, вождение в нетрезвом виде, кража, арест или
-          судимость, как правило, не являются автоматическим основанием для дисквалификации. Однако преднамеренные ложные заявления или упущения могут и часто приводят к отклонению вашей заявки,
-          независимо от характера или причины таких заявлений/упущений. Фактически, главной причиной "неудачи" при проверке биографии является преднамеренное утаивание или искажение информации,
-          имеющей отношение к работе, со стороны кандидата.<br /><br /><span style="font-weight: bold"
+          ><br />Существует очень мало автоматических оснований для отказа. Даже проблемы с прошлым поведением, такие как употребление наркотиков, вождение в нетрезвом виде, кража, арест или судимость, как правило, не являются автоматическим
+          основанием для дисквалификации. Однако преднамеренные ложные заявления или упущения могут и часто приводят к отклонению вашей заявки, независимо от характера или причины таких заявлений/упущений. Фактически, главной причиной "неудачи" при
+          проверке биографии является преднамеренное утаивание или искажение информации, имеющей отношение к работе, со стороны кандидата.<br /><br /><span style="font-weight: bold"
             ><div align="center">ВЫВОД: Вы несете ответственность за предоставление полной, точной и правдивой информации.</div></span
           >
         </div>
@@ -150,13 +138,17 @@
         </div>
         <div style="border: 1px solid black; padding: 5px; background-color: rgb(255, 255, 255); color: rgb(0, 0, 0)">
           <span style="font-weight: bold">1.1. ПОЛНОЕ ИМЯ:</span>
-          %input.fullname%<br /><br /><span style="font-weight: bold">1.2. ВОЗРАСТ:</span> %input.age%<br /><br /><span style="font-weight: bold">1.3. ПОЛ:</span><br />%checkbox.sexM% Мужской<br />%checkbox.sexF%
-          Женский<br /><br /><span style="font-weight: bold">1.4. ДАТА РОЖДЕНИЯ:</span> %date.dob%<br /><br /><span style="font-weight: bold">1.5. НОМЕР ТЕЛЕФОНА:</span>
-          %input.number%<br /><br /><span style="font-weight: bold">1.6. ЭТНИЧНОСТЬ (ВЫБРАТЬ ОДИН)</span><br />%checkbox.raceWhite% Светлокожий<br />%checkbox.raceBlack% Темнокожий/Афроамериканец<br />%checkbox.raceMex%
-          Мексиканец /Латиноамериканец<br />%checkbox.raceIndian% Индеец<br />%checkbox.raceAsian% Азиат<br />%checkbox.racePhilipinian% Филиппинец<br /><br /><span style="font-weight: bold"
+          %input.fullname%<br /><br /><span style="font-weight: bold">1.2. ВОЗРАСТ:</span> %input.age%<br /><br /><span style="font-weight: bold">1.3. ПОЛ:</span><br />%checkbox.sexM% Мужской<br />%checkbox.sexF% Женский<br /><br /><span
+            style="font-weight: bold"
+            >1.4. ДАТА РОЖДЕНИЯ:</span
+          >
+          %date.dob%<br /><br /><span style="font-weight: bold">1.5. НОМЕР ТЕЛЕФОНА:</span> %input.number%<br /><br /><span style="font-weight: bold">1.6. ЭТНИЧНОСТЬ (ВЫБРАТЬ ОДИН)</span><br />%checkbox.raceWhite% Светлокожий<br />%checkbox.raceBlack%
+          Темнокожий/Афроамериканец<br />%checkbox.raceMex% Мексиканец /Латиноамериканец<br />%checkbox.raceIndian% Индеец<br />%checkbox.raceAsian% Азиат<br />%checkbox.racePhilipinian% Филиппинец<br /><br /><span style="font-weight: bold"
             >1.7. СТАТУС РЕЗИДЕНТА</span
-          ><br />%checkbox.residentUsa% Гражданин США<br />%checkbox.residentNotUsa% Иностранец-резидент, имеющий право и подал заявку на получение гражданства США<br />%checkbox.residentForeigner%
-          Гражданин другой страны<br /><br /><span style="font-weight: bold">1.8. ПОЧЕМУ ВЫ ХОТИТЕ СТАТЬ ОФИЦЕРОМ ПОЛИЦИИ? Не менее 10-и предложений</span><br />%textarea.reason%
+          ><br />%checkbox.residentUsa% Гражданин США<br />%checkbox.residentNotUsa% Иностранец-резидент, имеющий право и подал заявку на получение гражданства США<br />%checkbox.residentForeigner% Гражданин другой страны<br /><br /><span
+            style="font-weight: bold"
+            >1.8. ПОЧЕМУ ВЫ ХОТИТЕ СТАТЬ ОФИЦЕРОМ ПОЛИЦИИ? Не менее 10-и предложений</span
+          ><br />%textarea.reason%
         </div>
         <br />
         <div style="padding: 2px; background-color: #0e212a">
@@ -166,18 +158,18 @@
         </div>
         <div style="border: 1px solid black; padding: 5px; background-color: rgb(255, 255, 255); color: rgb(0, 0, 0)">
           <span style="font-weight: bold">2.1. ВАШЕ ИМЯ:</span>
-          %input.oocname%<br /><br /><span style="font-weight: bold">2.2. ВАШ ВОЗРАСТ:</span> %input.oocage%<br /><br /><span style="font-weight: bold">2.3. ЧАСОВОЙ ПОЯС:</span>
-          %input.ooctimezone%<br /><br /><span style="font-weight: bold">2.4. ССЫЛКА НА VK:</span> %input.oocvk%<br /><br /><span style="font-weight: bold">2.5. ССЫЛКА НА ФОРУМНЫЙ АККАУНТ GRP:</span>
-          %input.oocgrp%<br /><br /><span style="font-weight: bold">2.6. ПРОЕКТЫ, НА КОТОРЫХ ИГРАЛИ РАНЕЕ:</span><br />%textarea.oocbefore%<br /><br /><span style="font-weight: bold"
-            >2.7. ФРАКЦИИ, В КОТОРЫХ ИГРАЛИ РАНЕЕ:</span
-          ><br />%textarea.oocfractions%<br /><br /><span style="font-weight: bold">2.8. ДОКАЗАТЕЛЬСТВА ВАШЕЙ ИГРЫ (SS, НЕОБЯЗАТЕЛЬНО ЗА КОПОВ):</span><br />%textarea.oocss%<br /><br /><span
-            style="font-weight: bold"
-            >2.9. ЧТО СОБИРАЕТЕСЬ ИГРАТЬ ВО ФРАКЦИИ? (ПЛАНЫ НА ИГРУ И ПЕРСОНАЖА):</span
-          ><br />%textarea.oocplans%<br /><br /><span style="font-weight: bold">2.10. МОЖЕТЕ ЛИ ВЫ ИСПОЛЬЗОВАТЬ TEAMSPEAK?:</span><br />%checkbox.ts% Да, я могу использовать Teamspeak и свободно
-          общаться в нём<br /><br /><span style="font-weight: bold">2.11. СОГЛАШЕНИЕ</span><br />Я ознакомлен(-а) с разделом Полицейская академия. Я соглашаюсь, что если покину фракцию в течении 14
-          дней, то буду занесен в черный список (ЧС) фракции без права выхода. Я соглашаюсь, что мое заявление может быть отклонено без объяснения причин. Я понимаю, что в случае слива любой
-          информации с форумов сообщества SA-ES я буду занесен в черный список SA-ES. После прохождения академии я обязуюсь изучить всю информацию на форуме (включая мануал и хендбук) и соглашаюсь с
-          тем, что могу быть уволен за несоблюдение мануала фракции.<br /><br />%checkbox.contract% Я принимаю условия данного заявления
+          %input.oocname%<br /><br /><span style="font-weight: bold">2.2. ВАШ ВОЗРАСТ:</span> %input.oocage%<br /><br /><span style="font-weight: bold">2.3. ЧАСОВОЙ ПОЯС:</span> %input.ooctimezone%<br /><br /><span style="font-weight: bold"
+            >2.4. ССЫЛКА НА VK:</span
+          >
+          %input.oocvk%<br /><br /><span style="font-weight: bold">2.5. ССЫЛКА НА ФОРУМНЫЙ АККАУНТ GRP:</span> %input.oocgrp%<br /><br /><span style="font-weight: bold">2.6. ПРОЕКТЫ, НА КОТОРЫХ ИГРАЛИ РАНЕЕ:</span
+          ><br />%textarea.oocbefore%<br /><br /><span style="font-weight: bold">2.7. ФРАКЦИИ, В КОТОРЫХ ИГРАЛИ РАНЕЕ:</span><br />%textarea.oocfractions%<br /><br /><span style="font-weight: bold"
+            >2.8. ДОКАЗАТЕЛЬСТВА ВАШЕЙ ИГРЫ (SS, НЕОБЯЗАТЕЛЬНО ЗА КОПОВ):</span
+          ><br />%textarea.oocss%<br /><br /><span style="font-weight: bold">2.9. ЧТО СОБИРАЕТЕСЬ ИГРАТЬ ВО ФРАКЦИИ? (ПЛАНЫ НА ИГРУ И ПЕРСОНАЖА):</span><br />%textarea.oocplans%<br /><br /><span style="font-weight: bold"
+            >2.10. МОЖЕТЕ ЛИ ВЫ ИСПОЛЬЗОВАТЬ TEAMSPEAK?:</span
+          ><br />%checkbox.ts% Да, я могу использовать Teamspeak и свободно общаться в нём<br /><br /><span style="font-weight: bold">2.11. СОГЛАШЕНИЕ</span><br />Я ознакомлен(-а) с разделом Полицейская академия. Я соглашаюсь, что если покину фракцию
+          в течении 14 дней, то буду занесен в черный список (ЧС) фракции без права выхода. Я соглашаюсь, что мое заявление может быть отклонено без объяснения причин. Я понимаю, что в случае слива любой информации с форумов сообщества SA-ES я буду
+          занесен в черный список SA-ES. После прохождения академии я обязуюсь изучить всю информацию на форуме (включая мануал и хендбук) и соглашаюсь с тем, что могу быть уволен за несоблюдение мануала фракции.<br /><br />%checkbox.contract% Я
+          принимаю условия данного заявления
         </div>
       </div>
       <hr />
@@ -201,6 +193,6 @@
         </div>
       </div>
     </div>
-    <script src="../js/generator.js"></script>
+    <script type="module" src="../js/generator.js"></script>
   </body>
 </html>
