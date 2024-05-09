@@ -47,7 +47,8 @@
 [size=120][b](( OOC информация ))[/b][/size]
 
 [coll3][a=Имя]%input.oocname(ЗАПОЛНИТЬ)%[/a]|[a=Возраст]%input.oocage(ЗАПОЛНИТЬ)%[/a]|[a=Часовой пояс]%input.oocgmt(ЗАПОЛНИТЬ)%[/a][/coll3]
-[coll][a=Ссылка на VK]%input.oocvk(vk.com/ЗАПОЛНИТЬ)%[/a]|[a=Ссылка на форумный аккаунт (G-RP)]%input.oocgrp(https://forum.gambit-rp.ru/members/ЗАПОЛНИТЬ)%[/a][/coll]
+[coll][a=Ссылка на VK]%input.oocvk(vk.com/ЗАПОЛНИТЬ)%[/a]|[a=Логин в Discord]%input.oocdiscord(ЗАПОЛНИТЬ)%[/a][/coll]
+[a=Ссылка на форумный аккаунт (G-RP)]%input.oocgrp(https://forum.gambit-rp.ru/members/ЗАПОЛНИТЬ)%[/a]
 [size=90][b]Проекты, на которых вы играли ранее[/b][/size]
 [textarea=#ccc][color=#555555][justify]%input.oocproj(ЗАПОЛНИТЬ)%[/justify][/color][/textarea]
 [size=90][b]Фракции, в которых вы играли ранее[/b][/size]
@@ -193,42 +194,44 @@
                     <div style="background-color: white; color: #555; border: 1px solid #ccc">%input.oocvk(vk.com/ЗАПОЛНИТЬ)%</div>
                   </td>
                   <td style="vertical-align: top; width: 50%; padding-left: 10px">
-                    <span style="font-weight: bold; font-size: 90%; line-height: 116%">Ссылка на форумный аккаунт (G-RP)</span><br />
-                    <div style="background-color: white; color: #555; border: 1px solid #ccc">%input.oocgrp(https://forum.gambit-rp.ru/members/ЗАПОЛНИТЬ)%</div>
+                    <span style="font-weight: bold; font-size: 90%; line-height: 116%">Логин в Discord</span><br />
+                    <div style="background-color: white; color: #555; border: 1px solid #ccc">%input.oocdiscord(ЗАПОЛНИТЬ)%</div>
                   </td>
                 </tr>
               </tbody>
             </table>
-            <br /><span style="font-size: 90%; line-height: 116%"><span style="font-weight: bold">Проекты, на которых вы играли ранее</span></span
-            ><br />
-            <div style="border: 1px solid #ccc; padding: 10px; background-color: #ffffff">
-              <span style="color: #555555"><div style="text-align: justify">%input.oocproj(ЗАПОЛНИТЬ)%</div></span>
+            <br /><span style="font-weight: bold; font-size: 90%; line-height: 116%">Ссылка на форумный аккаунт (G-RP)</span></span
+          ><br />
+          <div style="background-color: white; color: #555; border: 1px solid #ccc">%input.oocgrp(https://forum.gambit-rp.ru/members/ЗАПОЛНИТЬ)%</div>
+          <br /><span style="font-size: 90%; line-height: 116%"><span style="font-weight: bold">Проекты, на которых вы играли ранее</span></span
+          ><br />
+          <div style="border: 1px solid #ccc; padding: 10px; background-color: #ffffff">
+            <span style="color: #555555"><div style="text-align: justify">%input.oocproj(ЗАПОЛНИТЬ)%</div></span>
+          </div>
+          <br /><span style="font-size: 90%; line-height: 116%"><span style="font-weight: bold">Фракции, в которых вы играли ранее</span></span
+          ><br />
+          <div style="border: 1px solid #ccc; padding: 10px; background-color: #ffffff">
+            <span style="color: #555555"><div style="text-align: justify">%input.oocfrac(ЗАПОЛНИТЬ)%</div></span>
+          </div>
+          <br /><span style="font-size: 90%; line-height: 116%"><span style="font-weight: bold">Ваши доказательства игры (СС, при наличии)</span></span
+          ><br />
+          <div style="border: 1px solid #ccc; padding: 10px; background-color: #ffffff">
+            <span style="color: #555555"><div style="text-align: justify">%input.oocSS(ЗАПОЛНИТЬ)%</div></span>
+          </div>
+          <br /><span style="font-size: 90%; line-height: 116%"><span style="font-weight: bold">Что вы собираетесь играть во фракции, опишите будущего персонажа и планы на него:</span></span
+          ><br />
+          <div style="border: 1px solid #ccc; padding: 10px; background-color: #ffffff">
+            <span style="color: #555555"><div style="text-align: justify">%input.oocplans(ЗАПОЛНИТЬ)%</div></span>
+          </div>
+          <br /><span style="font-size: 90%; line-height: 116%"><span style="font-weight: bold">Имеется ли у Вас TeamSpeak3 и рабочий микрофон? Можете ли Вы свободно общаться в TeamSpeak3?</span><br />%checkbox.ts1% Да<br />%checkbox.ts2% Нет</span
+          ><br /><br /><span style="font-size: 90%; line-height: 116%"
+            ><span style="font-weight: bold">Соглашение</span><br />
+            <div style="text-align: justify">
+              Я ознакомлен(-а) с официальным разделом. Я соглашаюсь, что если покину фракцию в течении 14 дней, то буду занесен в черный список (ЧС) фракции без права выхода. Я соглашаюсь, что мое заявление может быть отклонено без объяснения причин.
+              Я понимаю, что в случае слива любой информации с форумов сообщества SA-ES я буду занесен в черный список SA-ES. После прохождения академии я обязуюсь изучить всю информацию на форуме (включая мануал и хендбук) и соглашаюсь с тем, что
+              могу быть уволен за несоблюдение мануала фракции.
             </div>
-            <br /><span style="font-size: 90%; line-height: 116%"><span style="font-weight: bold">Фракции, в которых вы играли ранее</span></span
-            ><br />
-            <div style="border: 1px solid #ccc; padding: 10px; background-color: #ffffff">
-              <span style="color: #555555"><div style="text-align: justify">%input.oocfrac(ЗАПОЛНИТЬ)%</div></span>
-            </div>
-            <br /><span style="font-size: 90%; line-height: 116%"><span style="font-weight: bold">Ваши доказательства игры (СС, при наличии)</span></span
-            ><br />
-            <div style="border: 1px solid #ccc; padding: 10px; background-color: #ffffff">
-              <span style="color: #555555"><div style="text-align: justify">%input.oocSS(ЗАПОЛНИТЬ)%</div></span>
-            </div>
-            <br /><span style="font-size: 90%; line-height: 116%"><span style="font-weight: bold">Что вы собираетесь играть во фракции, опишите будущего персонажа и планы на него:</span></span
-            ><br />
-            <div style="border: 1px solid #ccc; padding: 10px; background-color: #ffffff">
-              <span style="color: #555555"><div style="text-align: justify">%input.oocplans(ЗАПОЛНИТЬ)%</div></span>
-            </div>
-            <br /><span style="font-size: 90%; line-height: 116%"><span style="font-weight: bold">Имеется ли у Вас TeamSpeak3 и рабочий микрофон? Можете ли Вы свободно общаться в TeamSpeak3?</span><br />%checkbox.ts1% Да<br />%checkbox.ts2% Нет</span
-            ><br /><br /><span style="font-size: 90%; line-height: 116%"
-              ><span style="font-weight: bold">Соглашение</span><br />
-              <div style="text-align: justify">
-                Я ознакомлен(-а) с официальным разделом. Я соглашаюсь, что если покину фракцию в течении 14 дней, то буду занесен в черный список (ЧС) фракции без права выхода. Я соглашаюсь, что мое заявление может быть отклонено без объяснения
-                причин. Я понимаю, что в случае слива любой информации с форумов сообщества SA-ES я буду занесен в черный список SA-ES. После прохождения академии я обязуюсь изучить всю информацию на форуме (включая мануал и хендбук) и соглашаюсь с
-                тем, что могу быть уволен за несоблюдение мануала фракции.
-              </div>
-              <br />%checkbox.agree% Я принимаю условия данного заявления</span
-            ></span
+            <br />%checkbox.agree% Я принимаю условия данного заявления</span
           >
         </div>
       </div>
