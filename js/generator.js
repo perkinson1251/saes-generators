@@ -1,10 +1,13 @@
 const CHECKED_CHECKBOX = "[check][/check]";
 const UNCHECKED_CHECKBOX = "[uncheck][/uncheck]";
+const CHECKED_TEXT_CHECKBOX = "[ X ]";
+const UNCHECKED_TEXT_CHECKBOX = "[ ]";
 
 // const MAIN_REGEX = /%(\w+)\.(\w+)/;
 const MAIN_REGEX = /%(\w+)\.(\w+)(?:\((.*?)\))?%/;
 const OPTIONS_REGEX = /%option\.(\w+)\(([^)]+)\)%/;
 const CHECKBOX_REGEX = /%checkbox\.([a-zA-Z0-9-]+)%/;
+const TEXT_CHECKBOX_REGEX = /%textcheckbox\.([a-zA-Z0-9-]+)%/;
 const DATE_REGEX = /%date\.([a-zA-Z0-9-]+)%/;
 
 function initializeInputs() {
@@ -101,6 +104,28 @@ function initializeCheckboxes() {
 
       node.parentNode.replaceChild(container, node);
     }
+
+    let textMatches = node.nodeValue.match(TEXT_CHECKBOX_REGEX);
+    if (textMatches) {
+      let id = textMatches[1];
+
+      let checkbox = document.createElement("input");
+      checkbox.setAttribute("type", "checkbox");
+      checkbox.setAttribute("id", "textcheckbox." + id);
+      checkbox.setAttribute("class", "form-check-input");
+
+      let label = document.createElement("label");
+      label.setAttribute("for", id);
+      label.className = "form-check-label";
+      label.textContent = node.nodeValue.replace(TEXT_CHECKBOX_REGEX, "").trim();
+
+      let container = document.createElement("div");
+      container.setAttribute("class", "form-check");
+      container.appendChild(checkbox);
+      container.appendChild(label);
+
+      node.parentNode.replaceChild(container, node);
+    }
   });
 }
 
@@ -149,9 +174,14 @@ function replaceOptions(templateString, data) {
 
 function replaceCheckboxes(templateString, data) {
   for (let key in data) {
-    if (data.hasOwnProperty(key) && (data[key] === CHECKED_CHECKBOX || data[key] === UNCHECKED_CHECKBOX)) {
-      let regex = new RegExp("%checkbox\\." + escapeRegExp(key) + "%", "g");
-      templateString = templateString.replace(regex, data[key]);
+    if (data.hasOwnProperty(key)) {
+      if (data[key] === CHECKED_CHECKBOX || data[key] === UNCHECKED_CHECKBOX) {
+        let regex = new RegExp("%checkbox\\." + escapeRegExp(key) + "%", "g");
+        templateString = templateString.replace(regex, data[key]);
+      } else if (data[key] === CHECKED_TEXT_CHECKBOX || data[key] === UNCHECKED_TEXT_CHECKBOX) {
+        let regex = new RegExp("%textcheckbox\\." + escapeRegExp(key) + "%", "g");
+        templateString = templateString.replace(regex, data[key]);
+      }
     }
   }
   return templateString;
@@ -172,7 +202,12 @@ function processData() {
   let inputs = document.querySelectorAll('input[type="text"], textarea, select, input[type="checkbox"], input[type="date"]');
   inputs.forEach(function (input) {
     if (input.type === "checkbox") {
-      data[input.id] = input.checked ? CHECKED_CHECKBOX : UNCHECKED_CHECKBOX;
+      if (input.id.startsWith("textcheckbox.")) {
+        let id = input.id.replace("textcheckbox.", "");
+        data[id] = input.checked ? CHECKED_TEXT_CHECKBOX : UNCHECKED_TEXT_CHECKBOX;
+      } else {
+        data[input.id] = input.checked ? CHECKED_CHECKBOX : UNCHECKED_CHECKBOX;
+      }
     } else if (input.type === "date") {
       data[input.id] = formatDate(input.value);
     } else {
